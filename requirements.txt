@@ -1,0 +1,28 @@
+# Web framework
+fastapi==0.115.6
+uvicorn[standard]==0.32.1
+
+# HTTP client + HTML parsing
+httpx==0.28.1
+beautifulsoup4==4.12.3
+# lxml==5.3.0  # Optional: faster HTML parsing; requires libxml2/libxslt dev packages
+
+# Claude API
+anthropic==0.42.0
+
+# Database
+sqlalchemy==2.0.36
+
+# Caching
+fakeredis==2.26.2
+redis==5.2.1
+
+# Stripe billing (optional — used when STRIPE_ENABLED=true)
+stripe==11.3.0
+
+# Validation
+pydantic==2.10.3
+email-validator==2.2.0
+
+# Environment
+python-dotenv==1.0.1
