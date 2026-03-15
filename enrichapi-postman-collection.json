@@ -1,0 +1,137 @@
+{
+  "info": {
+    "name": "EnrichAPI",
+    "description": "AI-powered B2B company intelligence API. Get instant enrichment on any company: pain hypotheses, ICP scoring, tech stack, growth signals, and personalized outreach angles.\n\nGet your free trial key: http://72.62.52.171:8000/#trial",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "enrichapi-v1"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://72.62.52.171:8000",
+      "type": "string"
+    },
+    {
+      "key": "api_key",
+      "value": "YOUR_API_KEY_HERE",
+      "type": "string",
+      "description": "Get a free trial key at http://72.62.52.171:8000/#trial"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": ["{{base_url}}"],
+          "path": ["health"]
+        },
+        "description": "Check API health and version."
+      }
+    },
+    {
+      "name": "Get Free Trial Key",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/keys/trial",
+          "host": ["{{base_url}}"],
+          "path": ["keys", "trial"]
+        },
+        "description": "Generate a free trial API key (5 credits, no email required)."
+      }
+    },
+    {
+      "name": "Enrich Company — Quick",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-API-Key",
+            "value": "{{api_key}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"stripe.com\",\n  \"depth\": \"quick\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/enrich",
+          "host": ["{{base_url}}"],
+          "path": ["enrich"]
+        },
+        "description": "Fast enrichment (~5s). Returns company basics only. Costs 1 credit."
+      }
+    },
+    {
+      "name": "Enrich Company — Standard",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-API-Key",
+            "value": "{{api_key}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"hubspot.com\",\n  \"depth\": \"standard\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/enrich",
+          "host": ["{{base_url}}"],
+          "path": ["enrich"]
+        },
+        "description": "Full intelligence (~15s). Returns all fields: company, ICP profile, pain hypotheses, tech stack, growth signals, outreach angles. Costs 1 credit."
+      }
+    },
+    {
+      "name": "Check API Key Usage",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-Key",
+            "value": "{{api_key}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/keys/usage",
+          "host": ["{{base_url}}"],
+          "path": ["keys", "usage"]
+        },
+        "description": "Check remaining credits and usage stats for your API key."
+      }
+    },
+    {
+      "name": "View Company Showcase (HTML)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/showcase/salesforce",
+          "host": ["{{base_url}}"],
+          "path": ["showcase", "salesforce"]
+        },
+        "description": "Returns a full HTML intelligence report for a company. Cached for 1 hour. Replace 'salesforce' with any company domain slug."
+      }
+    }
+  ]
+}
